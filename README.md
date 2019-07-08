@@ -171,6 +171,9 @@ If you use the `--user` option to install / update packages Python might keep ol
 Solution: Do a `pip uninstall phySyncFirmata` multiple times until no version is left 
 on your computer. Then install it again as described above.
 
+# Contributing Examples
+
+If you have a new example you think we'd like, please consider sending it to us as a Pull Request.
 
 
 
@@ -178,3 +181,4 @@ on your computer. Then install it again as described above.
 
 The original pyFirmata was written by Tino de Bruijn.
 The realtime sampling / callback has been added by Bernd Porr.
+
