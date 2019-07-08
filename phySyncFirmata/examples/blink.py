@@ -26,7 +26,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import pyfirmata2
+import phySyncFirmata
 
 
 PIN = 13  # Pin 13 is used
@@ -35,10 +35,10 @@ DELAY = 1  # 1 second delay
 # Adjust that the port match your system, see samples below:
 # On Linux: /dev/tty.usbserial-A6008rIF, /dev/ttyACM0,
 # On Windows: \\.\COM1, \\.\COM2
-PORT =  pyfirmata2.Arduino.AUTODETECT
+PORT =  phySyncFirmata.Arduino.AUTODETECT
 
 # Creates a new board
-board = pyfirmata2.Arduino(PORT)
+board = phySyncFirmata.Arduino(PORT)
 
 # Loop for blinking the led
 while True:

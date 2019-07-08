@@ -1,5 +1,5 @@
 from collections import deque
-import pyfirmata2
+import phySyncFirmata
 
 
 class MockupSerial(deque):
@@ -46,7 +46,7 @@ class MockupSerial(deque):
         return len(self)
 
 
-class MockupBoard(pyfirmata2.Board):
+class MockupBoard(phySyncFirmata.Board):
 
     def __init__(self, port, layout, values_dict={}):
         self.sp = MockupSerial(port, 115200)
@@ -69,7 +69,7 @@ class MockupBoard(pyfirmata2.Board):
             pin.values_dict = self.values_dict
 
 
-class MockupPort(pyfirmata2.Port):
+class MockupPort(phySyncFirmata.Port):
     def __init__(self, board, port_number):
         self.board = board
         self.port_number = port_number
@@ -78,14 +78,14 @@ class MockupPort(pyfirmata2.Port):
         self.pins = []
         for i in range(8):
             pin_nr = i + self.port_number * 8
-            self.pins.append(MockupPin(self.board, pin_nr, type=pyfirmata2.DIGITAL, port=self))
+            self.pins.append(MockupPin(self.board, pin_nr, type=phySyncFirmata.DIGITAL, port=self))
 
     def update_values_dict(self):
         for pin in self.pins:
             pin.values_dict = self.values_dict
 
 
-class MockupPin(pyfirmata2.Pin):
+class MockupPin(phySyncFirmata.Pin):
     def __init__(self, *args, **kwargs):
         self.values_dict = kwargs.get('values_dict', {})
         try:
@@ -117,9 +117,9 @@ class MockupPin(pyfirmata2.Pin):
         return self.is_active
 
     def write(self, value):
-        if self.mode == pyfirmata2.UNAVAILABLE:
+        if self.mode == phySyncFirmata.UNAVAILABLE:
             raise IOError("Cannot read from pin {0}".format(self.pin_number))
-        if self.mode == pyfirmata2.INPUT:
+        if self.mode == phySyncFirmata.INPUT:
             raise IOError("{0} pin {1} is not an output"
                           .format(self.port and "Digital" or "Analog", self.get_pin_number()))
         if not self.port:

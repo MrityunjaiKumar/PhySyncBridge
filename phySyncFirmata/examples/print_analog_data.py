@@ -1,4 +1,4 @@
-from pyfirmata2 import Arduino
+from phySyncFirmata import Arduino
 import time
 
 PORT = Arduino.AUTODETECT

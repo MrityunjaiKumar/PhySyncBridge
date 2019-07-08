@@ -1,4 +1,4 @@
-from pyfirmata2 import Arduino
+from phySyncFirmata import Arduino
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation

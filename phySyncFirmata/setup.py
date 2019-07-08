@@ -7,16 +7,16 @@ with open('README.rst') as f:
 
 setup(
     name='phySyncFirmata',
-    version='3.0.2',
+    version='3.0.3',
     description="Use your Arduino as a data acquisition card under Python",
     long_description=long_description,
     author='Mrityunjai Kumar',
     author_email='mrityunjai.kmr@gmail.com',
     packages=['phySyncFirmata'],
     include_package_data=True,
-    install_requires=['pyserial','matplotlib'],
+    install_requires=['pyserial','matplotlib','jupyter','numpy'],
     zip_safe=False,
-    url='https://github.com/cedt/PhySyncFirmata',
+    url='https://github.com/cedt/PhySyncBridge',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

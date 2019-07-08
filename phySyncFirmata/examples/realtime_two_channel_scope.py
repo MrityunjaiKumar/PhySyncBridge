@@ -11,7 +11,7 @@ from pyqtgraph.Qt import QtCore, QtGui
 
 import numpy as np
 
-from pyfirmata2 import Arduino
+from phySyncFirmata import Arduino
 PORT = Arduino.AUTODETECT
 
 # create a global QT application object
