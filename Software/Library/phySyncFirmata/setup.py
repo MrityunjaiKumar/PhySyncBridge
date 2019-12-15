@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from setuptools import setup
+from setuptools import setup,find_packages
 
 with open('README.rst') as f:
     long_description = f.read()
@@ -12,9 +12,9 @@ setup(
     long_description=long_description,
     author='Mrityunjai Kumar',
     author_email='mrityunjai.kmr@gmail.com',
-    packages=['phySyncFirmata'],
+    packages=find_packages(),
     include_package_data=True,
-    install_requires=['pyserial','matplotlib','jupyter','numpy'],
+    install_requires=['pyserial','matplotlib','numpy'],
     zip_safe=False,
     url='https://github.com/cedt/PhySyncBridge',
     classifiers=[
