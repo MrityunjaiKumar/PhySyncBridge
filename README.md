@@ -1,7 +1,8 @@
 # phySyncFirmata
 
 
-![oscilloscope](docs/Images/oscilloscope_gif.gif)
+![oscilloscope](docs/Images/steinhart_temperature_C.gif)
+
 phySyncFirmata turns your Arduino into a data acquisition card controlled by Python.
 
 Just upload the default firmata sketch into your Arduino and you are all set.  Use baud rate **115200** from arduino side also.
