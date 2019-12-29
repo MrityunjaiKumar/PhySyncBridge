@@ -1,9 +1,0 @@
-*.pyc
-.DS_Store
-.coverage
-build
-dist
-MANIFEST
-docs/_build
-
-*.sublime-*
