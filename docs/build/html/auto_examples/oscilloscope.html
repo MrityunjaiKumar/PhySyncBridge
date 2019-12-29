@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>oscilloscope &mdash; PhyCom 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Getting started with Python for physical computing" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PhyCom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started with Python for physical computing</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">oscilloscope</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PhyCom</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Getting started with Python for physical computing</a> &raquo;</li>
+        
+      <li>oscilloscope</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/auto_examples/oscilloscope.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-oscilloscope-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="oscilloscope">
+<span id="sphx-glr-auto-examples-oscilloscope-py"></span><h1>oscilloscope<a class="headerlink" href="#oscilloscope" title="Permalink to this headline">¶</a></h1>
+<p>This oscilloscope example code grabs data from PhyCom and plot it in realTime</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">phySyncFirmata.phyCom.peripherals</span> <span class="k">import</span> <span class="n">Version1_pinouts</span> <span class="k">as</span> <span class="n">pins</span>
+ <span class="kn">from</span> <span class="nn">phySyncFirmata.phyCom.common_Utility</span> <span class="k">import</span> <span class="n">RealtimePlotWindow</span>
+
+ <span class="kn">from</span> <span class="nn">phySyncFirmata</span> <span class="k">import</span> <span class="n">ArduinoNano</span>
+
+ <span class="sd">&#39;&#39;&#39;This function will print all the peripheral pinouts&#39;&#39;&#39;</span>
+ <span class="c1">#pins.print_pinouts()</span>
+
+ <span class="sd">&#39;&#39;&#39;Get the pin number for respective peripherals&#39;&#39;&#39;</span>
+ <span class="c1">#print(pins.Ac_relay)</span>
+
+ <span class="n">board</span> <span class="o">=</span> <span class="n">ArduinoNano</span><span class="p">(</span><span class="s1">&#39;COM8&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Create an instance of an animated scrolling window</span>
+ <span class="c1"># To plot more channels just create more instances and add callback handlers below</span>
+ <span class="n">realtimePlotWindow</span> <span class="o">=</span> <span class="n">RealtimePlotWindow</span><span class="p">()</span>
+
+ <span class="c1"># sampling rate: 1000Hz</span>
+ <span class="n">samplingRate</span> <span class="o">=</span> <span class="mi">100</span>
+
+ <span class="c1"># called for every new sample which has arrived from the Arduino</span>
+ <span class="k">def</span> <span class="nf">callBack</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+     <span class="c1"># send the sample to the plotwindow</span>
+     <span class="n">realtimePlotWindow</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+ <span class="c1"># Set the sampling rate in the Arduino</span>
+ <span class="n">board</span><span class="o">.</span><span class="n">samplingOn</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">samplingRate</span><span class="p">)</span>
+
+ <span class="c1"># Register the callback which adds the data to the animated plot</span>
+ <span class="n">board</span><span class="o">.</span><span class="n">analog</span><span class="p">[</span><span class="n">pins</span><span class="o">.</span><span class="n">Pot_1</span><span class="p">]</span><span class="o">.</span><span class="n">register_callback</span><span class="p">(</span><span class="n">callBack</span><span class="p">)</span>
+
+ <span class="c1"># Enable the callback</span>
+ <span class="n">board</span><span class="o">.</span><span class="n">analog</span><span class="p">[</span><span class="n">pins</span><span class="o">.</span><span class="n">Pot_1</span><span class="p">]</span><span class="o">.</span><span class="n">enable_reporting</span><span class="p">()</span>
+ <span class="n">realtimePlotWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-oscilloscope-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9cf32d14fbf74c690c521b985bf2d5b9/oscilloscope.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">oscilloscope.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9e3bf1b502357e069e2606cd0150014b/oscilloscope.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">oscilloscope.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Getting started with Python for physical computing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Sincgrid LLP
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
