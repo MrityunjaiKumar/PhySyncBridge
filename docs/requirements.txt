@@ -1,0 +1,6 @@
+Sphinx==2.3.1
+sphinx-gallery
+matplotlib
+scipy
+numpy
+sphinx_rtd_theme

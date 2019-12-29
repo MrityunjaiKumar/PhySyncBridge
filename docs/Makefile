@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = python -msphinx
+SPHINXBUILD   = python3 -msphinx
 SPHINXPROJ    = PhyCom
 SOURCEDIR     = source
 BUILDDIR      = build
@@ -12,6 +12,8 @@ BUILDDIR      = build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+clean:
+	-rm -rf build/*
 .PHONY: help Makefile
 
 # Catch-all target: route all unknown targets to Sphinx using the new

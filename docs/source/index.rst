@@ -8,9 +8,8 @@ Welcome to PhyCom's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
-
+   
+   auto_examples/index
 
 Indices and tables
 ==================
