@@ -21,7 +21,8 @@ import sys
 import sphinx
 import sphinx_gallery
 # sys.path.insert(0, os.path.abspath('.'))
-
+# sys.path.append('python_phySyncFirmata')
+sys.path.insert(0, os.path.abspath('python_phySyncFirmata'))
 
 # -- General configuration ------------------------------------------------
 
@@ -34,10 +35,12 @@ import sphinx_gallery
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
-    'sphinx_gallery.gen_gallery'
+    'sphinx_gallery.gen_gallery',
+    'sphinx.ext.napoleon'
 ]
 
 sphinx_gallery_conf = {
