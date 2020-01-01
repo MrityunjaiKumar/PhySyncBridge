@@ -58,3 +58,7 @@ Creating Your First Project
     PIN = 6  
     board.digital[PIN].write(1)#high
     board.digital[PIN].write(0)#low
+
+.. note:: 
+
+    The pin 6 is blue led from RGB led.
