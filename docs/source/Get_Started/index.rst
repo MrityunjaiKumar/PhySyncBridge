@@ -4,12 +4,19 @@ Get Started
 
 Introduction
 ============
-The physical computing bridge (PhyCom bridge) provides a platform from hardware as well as software side environment to achieve physical computing scope elaborated in the above section. 
+The physical computing bridge (PhyCom bridge) provides a platform from hardware as well as software 
+side environment to achieve physical computing scope. 
 
-PhyCom is platform which have server side implementation of firmata(discussed below), client-server (request-response) model in its MCU. This PhyCom is controlled by a host computer.  This host computer acts as client in this client-server model.
+PhyCom is platform which have server side implementation of firmata, 
+client-server (request-response) model in its MCU. This PhyCom is controlled by a host computer.  
+This host computer acts as client in this client-server model.
 
-The communication link between PhyCom and host computer is achieved via serial communication, On host side this link enumerated as a COM port with the help of USB-To-Serial bridge. The data transfer is binary in nature and if of full duplex type.
-On server side, we have pre-burned firmata image which exposes firmata API over COM  port. On client side we uses PhySyncFirmata, a package to send commands to (request), and receives response from PhyCom Hardware side
+The communication link between PhyCom and host computer is achieved via serial communication, 
+On host side this link enumerated as a COM port with the help of USB-To-Serial bridge. 
+The data transfer is binary in nature and if of full duplex type.
+On server side, we have pre-burned firmata image which exposes firmata API over COM  port. 
+On client side we uses PhySyncFirmata, a package to send commands to (request), 
+and receives response from PhyCom Hardware side
 
 
 What You Need
