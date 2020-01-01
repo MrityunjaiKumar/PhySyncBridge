@@ -4,3 +4,5 @@ matplotlib
 scipy
 numpy
 sphinx_rtd_theme
+breathe
+rst2pdf

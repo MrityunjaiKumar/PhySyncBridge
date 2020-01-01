@@ -4,7 +4,7 @@
 
 .. _sphx_glr_auto_examples:
 
-Getting started with Python for physical computing
+Examples
 ===================================================================
 
 This part of the *Python for physical computing* is a self-contained introduction to

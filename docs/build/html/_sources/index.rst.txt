@@ -6,6 +6,17 @@
 Welcome to PhyCom's documentation!
 ==================================
 
+.. toctree::
+   :maxdepth: 2
+   
+   Get_Started/index
+   RST/firmata
+   python_phySyncFirmata/modules
+   auto_examples/index
+
+.. image:: _static/images/phycom_board.png
+    :align: center
+
 What is PhyCom?
 ---------------
 
@@ -23,16 +34,15 @@ client-server (request-response) model in its MCU.
 This PhyCom is controlled by a host computer.  
 This host computer acts as client in this client-server model.
 
+
+.. image:: _static/images/phycom_block.png
+    :align: center
+
 Purchase
 ---------
 This kit can be purchased from `SincGrid Store <https://store.sincgrid.com/index.php?route=product/product&path=59&product_id=66>`_.
 For bulk order and student coupons, feel free to contact at sales\@sincgrid.com
 
-.. toctree::
-   :maxdepth: 2
-   
-   auto_examples/index
-   python_phySyncFirmata/modules
 
 Indices and tables
 ==================

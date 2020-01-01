@@ -40,7 +40,9 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinx_gallery.gen_gallery',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'breathe',
+    'rst2pdf.pdfbuilder'
 ]
 
 sphinx_gallery_conf = {
@@ -54,6 +56,19 @@ sphinx_gallery_conf = {
     'ignore_pattern': r'__init__\.py',
     
     }
+
+
+breathe_projects = {
+    "Firmata":"../../../../Arduino-workspace/Firmata/Firmata_arduino/docs/xml/",
+    }
+
+# Breathe Configuration
+breathe_default_project = "Firmata library reference"
+
+
+pdf_documents = [('index', u'rst2pdf', u'Sample rst2pdf doc', u'Your Name'),]
+
+
 autosummary_generate = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
