@@ -5,51 +5,56 @@
 
 phySyncFirmata turns your Arduino into a data acquisition card controlled by Python.
 
-Just upload the default firmata sketch into your Arduino and you are all set.  Use baud rate **115200** from arduino side also.
+Just upload the default firmata sketch into your Arduino and you are all set.
+Use baud rate **115200** from Arduino side as well.
 
-phySyncFirmata is an updated version of pyFirmata which adds precise sampling
+phySyncFirmata is an updated version of
+[pyFirmata](https://pypi.org/project/pyFirmata/) which adds precise sampling
 to the API so that it's possible to filter signals and in general do
 signal processing. Instead of "sleep" commands which have unreliable timing
-the Arduino performs the sampling in its firmware and transmits the data
-then to phySyncFirmata. The Python application simply registers a callback
-which is then called every time after new data has arrived.
+the Arduino performs the sampling in its firmware and then transmits the data
+to phySyncFirmata. The Python application simply registers a callback
+which is then called every time new data has arrived.
+
+
 
 
 # Installation
 
-
-# Upload firmata
+## Upload firmata
 
 Install the Arduino IDE on your computer: https://www.arduino.cc/en/Main/Software
 
-Start the IDE and upload the standard firmata sketch into your Arduino with::
-  
+Start the IDE and upload the standard firmata sketch into your Arduino with:
+
     File -> Examples -> Firmata -> Standard Firmata
 
+If you cannot find the example, you may have to install the `Firmata` library in Arduino IDE.
 
 
-# Install phySyncFirmata
 
-The preferred way to install is with `pip` / `pip3`. Under Linux::
+## Install phySyncFirmata
+
+The preferred way to install is with `pip` / `pip3`. Under Linux:
 
     pip3 install phySyncFirmata [--user] [--upgrade]
 
-    
-and under Windows/Mac type::
-  
+
+and under Windows/Mac type:
+
     pip install phySyncFirmata [--user] [--upgrade]
 
-    
-You can also install from source with::
 
-    git clone https://github.com/cedt/PhySyncFirmata
+You can also install from source with:
+
+    git clone https://github.com/MrityunjaiKumar/phySyncFirmata.git
     cd phySyncFirmata
 
-Under Linux type::
-  
+Under Linux type:
+
     python3 setup.py install
 
-Under Windows / Mac::
+Under Windows / Mac:
 
     python setup.py install
 
@@ -57,16 +62,16 @@ Under Windows / Mac::
 # Usage
 
 
-# Initialisation
+## Initialisation
 
-Create an instance of the `Arduino` class::
+Create an instance of the `Arduino` class:
 
-    from pyfirmata import Arduino
+    from phySyncFirmata import Arduino
     board = Arduino(Arduino.AUTODETECT)
 
 which automatically detects the serial port of the Arduino.
 
-If this fails you can also specify the serial port manually, for example::
+If this fails you can also specify the serial port manually, for example:
 
     board = Arduino('COM4')
 
@@ -75,30 +80,30 @@ COM port, for example `COM4`. On a MAC it's `/dev/ttys000`, `/dev/cu.usbmodem141
 check for the latest addition: `ls -l -t /dev/*`.
 
 
-# Starting sampling at a given sampling interval
+## Starting sampling at a given sampling interval
 
-In order to sample analogue data you need to specify a
-sampling interval in ms. The smallest interval is 10ms::
+In order to sample analog data you need to specify a
+sampling interval in ms. The smallest interval is 10ms:
 
-    board.samplingOn(samplinginterval in ms)
+    board.samplingOn(<samplinginterval in ms>)
 
 Calling `samplingOn()` without its argument sets
 the sampling interval to 19ms.
 
 
-# Enabling and reading from analoge pins
+## Enabling and reading from analog pins
 
 To process data at a given sampling interval register a callback
-handler and then enable it::
-  
+handler and then enable it:
+
     board.analog[0].register_callback(myCallback)
     board.analog[0].enable_reporting()
-    
-where `myCallback(data)` is then called every time after data has been received
-and is timed by the arduino itself.
 
-You can also read additional analogue pins any time by issuing a read
-command::
+where `myCallback(data)` is called whenever data has been received.
+This is timed by the Arduino itself.
+
+You can also read additional analog pins any time by issuing a read
+command:
 
     board.analog[1].read()
 
@@ -109,38 +114,41 @@ recent value received from the Arduino. This call is non-blocking.
 You also need to run `enable_reporting()` on that pin before you can use `read()`.
 
 
-# Writing to a digital port
+## Writing to a digital port
 
-Digital ports can be written to at any time::
-  
+Digital ports can be written to at any time:
+
     board.digital[13].write(1)
 
 For any other functionality use the pin class below.
 
-    
-# The pin class
+
+## The pin class
+
 The command `get_pin` requests the class of a pin
 by specifying a string, composed of
 'a' or 'd' (depending on if you need an analog or digital pin), the pin
 number, and the mode ('i' for input, 'o' for output, 'p' for pwm). All
 seperated by `:`. Eg. `a:0:i` for analog 0 as input or `d:3:p` for
-digital pin 3 as pwm::
+digital pin 3 as pwm:
 
     analog_0 = board.get_pin('a:0:i')
     analog_0.read()
     pin3 = board.get_pin('d:3:p')
     pin3.write(0.6)
-	
-	
-# Closing the board
-To close the serial port to the Arduino use the exit command::
-    
-	board.exit()
+
+
+## Closing the board
+
+To close the serial port to the Arduino use the exit command:
+
+    board.exit()
 
 
 # Example code
 
-The directory https://github.com/cedt/PhySyncFirmata/tree/master/examples 
+The directory
+https://github.com/MrityunjaiKumar/phySyncFirmata/tree/master/Software/Examples
 contains two realtime Oscilloscopes with precise sampling rate,
 a digital port reader, the ubiquitous flashing LED program and
 a program which prints data using the callback handler.
@@ -148,10 +156,10 @@ a program which prints data using the callback handler.
 
 # Troubleshooting
 
-# Spyder
+## Spyder
 
 Start your program from the (Anaconda-) console / terminal and never within Spyder. Here is
-an example for Windows::
+an example for Windows:
 
     (base) D:\>
     (base) D:\>cd phySyncFirmata\examples
@@ -163,12 +171,14 @@ it won't be able to talk to your Arduino. In the worst case you need to reboot y
 computer. Bottomline: use Spyder for editing, run the program from the console / terminal.
 
 
-# After an update still the old version is being used
+## After an update still the old version is being used
 
-If you use the `--user` option to install / update packages Python might keep older versions.
+If you use the `--user` option to install/update packages, Python might keep older versions.
 
-Solution: Do a `pip uninstall phySyncFirmata` multiple times until no version is left 
+Solution: Do a `pip uninstall phySyncFirmata` multiple times until no version is left
 on your computer. Then install it again as described above.
+
+
 
 # Contributing Examples
 
