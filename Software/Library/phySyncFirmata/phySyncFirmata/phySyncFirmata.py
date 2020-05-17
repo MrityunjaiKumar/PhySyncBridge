@@ -95,7 +95,7 @@ class Board(object):
             if l:
                 if platform == "linux" or platform == "linux2":
                     for d in l:
-                        if 'USB' in d.device or 'usbserial' in d.device:
+                        if 'USB' in d.device or 'usbserial' in d.device or 'ACM' in d.device:
                             port = str(d.device)
                 elif platform == "win32":
                     comports = []
